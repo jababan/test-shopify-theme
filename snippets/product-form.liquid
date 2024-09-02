@@ -1,0 +1,26 @@
+<script>
+  console.log({{section}})
+</script>
+<div class="product-info">
+
+    {%- for block in section.blocks -%}
+      {{ block.type }}
+        {%- case block.type -%}
+        
+
+        {%- when 'cttitle' -%}
+            <div class="collapsible__item">
+            <button is="toggle-button" class="collapsible-toggle" aria-controls="block-{{ section.id }}-{{ block.id }}" aria-expanded="false" itemprop="name">
+                {{- block.settings.title -}}
+                <span class="animated-plus"></span>
+            </button>
+
+            <collapsible-content id="block-{{ section.id }}-{{ block.id }}" class="collapsible anchor" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" {{ block.shopify_attributes }}>
+                <div class="collapsible__content text-container" itemprop="text">
+                {{ block.settings.answer }}
+                </div>
+            </collapsible-content>
+            </div>
+        {%- endcase -%}
+    {%- endfor -%}
+</div>
